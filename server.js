@@ -25,9 +25,26 @@ app.get('/', (req, res) => {
     });
 });
 
+// GET all canddiates 
 db.query(`SELECT * FROM candidates`, (err, rows) => {
     console.log(rows);
 });
+
+// GET a single candidate
+db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
+    if (err) {
+        console.log(err);
+    }
+    console.log(row);
+});
+
+// DELETE a candidate
+db.query(`DELETE FROM candidates WHERE id = ?`, 1, (err, result) => {
+    if (err) {
+        console.log(err);
+    }
+    console.log(result);
+})
 
 // default response for any other request 
 app.use((req, res) => {
